@@ -1,4 +1,4 @@
-< !DOCTYPE html>
+<!DOCTYPE html>
 <html>
   <head>
     <title>React Basics</title>
@@ -14,14 +14,16 @@
     
       
 
-    const div=  <div>
-         <button>Good job!</button>;
-          <p>My name is ashish</p>
+
+       let socks=10;
+       let tishrt=8;
+       let productCost=socks+(tishrt*2);
+         const p=<p>Product Cost :${productCost}</p>
         
-        </div>
+
 
       const container = document.querySelector('.js-container');
-      ReactDOM.createRoot(container).render(div);
+      ReactDOM.createRoot(container).render(p);
     </script>
   </body>
 </html>
