@@ -17,14 +17,18 @@
       function sendInput(event){
         setInputText(event.target.value);
       }
-      function sendMessage(){
+      async function sendMessage(){
         const newChatMessages=[...chatmessage,{
        message:inputText,
        sender:"user",
        id:crypto.randomUUID()
       }]
       setChatMessage(newChatMessages);
-      const response=Chatbot.getResponse(inputText);
+   ;
+      const response=await Chatbot.getResponseAsync(inputText);
+       
+
+
        setChatMessage([...newChatMessages,{
        message:response,
        sender:"robot",

@@ -14,17 +14,38 @@
 
     function ChatInput({chatmessage,setChatMessage}){
       const [inputText,setInputText]=React.useState('');
+        const [isLoading, setIsLoading] = React.useState(false);
       function sendInput(event){
         setInputText(event.target.value);
       }
-      function sendMessage(){
+      async function sendMessage(){
+
+
+
+          if (isLoading || inputText === '') {
+            return;
+          }
         const newChatMessages=[...chatmessage,{
        message:inputText,
        sender:"user",
        id:crypto.randomUUID()
       }]
       setChatMessage(newChatMessages);
-      const response=Chatbot.getResponse(inputText);
+     setChatMessages([
+            ...newChatMessages,
+            // This creates a temporary Loading... message.
+            // Because we don't save this message in newChatMessages,
+            // it will be remove later, when we add the response.
+            {
+              message: 'Loading...',
+              sender: 'robot',
+              id: crypto.randomUUID()
+            }
+          ]);
+      const response=await Chatbot.getResponseAsync(inputText);
+       
+ setIsLoading(false);
+
        setChatMessage([...newChatMessages,{
        message:response,
        sender:"robot",
